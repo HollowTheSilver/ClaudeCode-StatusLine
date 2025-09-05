@@ -1,0 +1,23 @@
+# Temporary files
+*.tmp
+*.log
+*.bak
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# Personal configurations (examples of user-specific files)
+my-*.json
+
+# Testing artifacts
+test-output/
+test-logs/

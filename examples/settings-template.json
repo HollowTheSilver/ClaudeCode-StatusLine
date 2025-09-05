@@ -1,0 +1,7 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"{PATH_TO_SCRIPT}\\statusline.ps1\""
+  },
+  "outputStyle": "Explanatory"
+}

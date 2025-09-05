@@ -1,0 +1,47 @@
+{
+  "preset": "default",
+  "format": {
+    "layout": "two-line",
+    "separator": " -> ",
+    "showLabels": true,
+    "components": {
+      "project": {
+        "show": true,
+        "label": "",
+        "position": 1
+      },
+      "branch": {
+        "show": true,
+        "label": "Branch:",
+        "position": 2
+      },
+      "accessed": {
+        "show": true,
+        "label": "Accessed:",
+        "position": 3
+      },
+      "model": {
+        "show": true,
+        "position": "line2"
+      }
+    }
+  },
+  "technical": {
+    "maxDepth": 5,
+    "pathShortening": 3,
+    "timeWindow": 30
+  },
+  "colors": {
+    "enabled": true,
+    "project": "Magenta",
+    "branch": "Yellow",
+    "accessed": "Green",
+    "model": "Cyan",
+    "separator": "White"
+  },
+  "metadata": {
+    "version": "2.1",
+    "description": "Default configuration - maintains current behavior",
+    "author": "HollowTheSilver"
+  }
+}

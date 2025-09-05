@@ -1,0 +1,48 @@
+{
+  "preset": "compact",
+  "format": {
+    "layout": "one-line",
+    "separator": " • ",
+    "showLabels": false,
+    "components": {
+      "project": {
+        "show": true,
+        "label": "",
+        "position": 1
+      },
+      "branch": {
+        "show": true,
+        "label": "",
+        "position": 2
+      },
+      "accessed": {
+        "show": true,
+        "label": "",
+        "position": 3
+      },
+      "model": {
+        "show": true,
+        "position": 4
+      }
+    }
+  },
+  "technical": {
+    "maxDepth": 4,
+    "pathShortening": 2,
+    "timeWindow": 30
+  },
+  "colors": {
+    "enabled": true,
+    "project": "Magenta",
+    "branch": "Yellow",
+    "accessed": "Green",
+    "model": "Cyan",
+    "separator": "DarkGray"
+  },
+  "metadata": {
+    "version": "2.1",
+    "description": "Compact preset - all information on one line",
+    "example": "MultiCord • dev • platform_core/entities/ProcessInfo.py • Claude Sonnet 4",
+    "author": "HollowTheSilver"
+  }
+}

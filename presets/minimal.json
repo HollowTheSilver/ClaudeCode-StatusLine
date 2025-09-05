@@ -1,0 +1,43 @@
+{
+  "preset": "minimal",
+  "format": {
+    "layout": "two-line",
+    "separator": " | ",
+    "showLabels": false,
+    "components": {
+      "project": {
+        "show": true,
+        "label": "",
+        "position": 1
+      },
+      "branch": {
+        "show": true,
+        "label": "",
+        "position": 2
+      },
+      "accessed": {
+        "show": true,
+        "label": "",
+        "position": 3
+      },
+      "model": {
+        "show": true,
+        "position": "line2"
+      }
+    }
+  },
+  "technical": {
+    "maxDepth": 5,
+    "pathShortening": 3,
+    "timeWindow": 30
+  },
+  "colors": {
+    "enabled": false
+  },
+  "metadata": {
+    "version": "2.1",
+    "description": "Minimal preset - no labels, simple separators",
+    "example": "MultiCord | dev | platform_core/entities/ProcessInfo.py",
+    "author": "HollowTheSilver"
+  }
+}

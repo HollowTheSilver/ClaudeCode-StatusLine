@@ -1,0 +1,50 @@
+{
+  "preset": "default",
+  "format": {
+    "layout": "two-line",
+    "separator": " | ",
+    "showLabels": true,
+    "components": {
+      "project": {
+        "show": true,
+        "label": "PROJECT: ",
+        "suffix": "",
+        "position": 1
+      },
+      "branch": {
+        "show": true,
+        "label": "(",
+        "suffix": ")",
+        "position": 2
+      },
+      "accessed": {
+        "show": true,
+        "label": "FILE: ",
+        "position": 3
+      },
+      "model": {
+        "show": true,
+        "label": "MODEL: ",
+        "position": "line2"
+      }
+    }
+  },
+  "technical": {
+    "maxDepth": 6,
+    "pathShortening": 4,
+    "timeWindow": 60
+  },
+  "colors": {
+    "enabled": true,
+    "project": "Blue",
+    "branch": "Green", 
+    "accessed": "Yellow",
+    "model": "Magenta",
+    "separator": "Cyan"
+  },
+  "metadata": {
+    "version": "2.1",
+    "description": "Custom example configuration with extended settings",
+    "author": "Community Example"
+  }
+}
