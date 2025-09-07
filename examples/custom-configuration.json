@@ -17,7 +17,7 @@
         "suffix": ")",
         "position": 2
       },
-      "accessed": {
+      "modified": {
         "show": true,
         "label": "FILE: ",
         "position": 3
@@ -38,7 +38,7 @@
     "enabled": true,
     "project": "Blue",
     "branch": "Green", 
-    "accessed": "Yellow",
+    "modified": "Yellow",
     "model": "Magenta",
     "separator": "Cyan"
   },

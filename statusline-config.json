@@ -15,9 +15,9 @@
         "label": "Branch:",
         "position": 2
       },
-      "accessed": {
+      "modified": {
         "show": true,
-        "label": "Accessed:",
+        "label": "Modified:",
         "position": 3
       },
       "model": {
@@ -35,7 +35,7 @@
     "enabled": true,
     "project": "Magenta",
     "branch": "Yellow",
-    "accessed": "Green",
+    "modified": "Green",
     "model": "Cyan",
     "separator": "White"
   },

@@ -15,7 +15,7 @@
         "label": "",
         "position": 2
       },
-      "accessed": {
+      "modified": {
         "show": true,
         "label": "",
         "position": 3
@@ -34,7 +34,7 @@
   "colors": {
     "enabled": true,
     "project": "Cyan",
-    "accessed": "Green",
+    "modified": "Green",
     "model": "Blue"
   },
   "metadata": {

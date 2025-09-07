@@ -4,7 +4,7 @@ A professional, customizable status line for Claude Code with intelligent projec
 
 ## Overview
 
-The Claude Code Status Line displays essential development context including project name, git branch, recently accessed files, and Claude model information. Fully customizable through JSON configuration with multiple built-in presets for different terminal environments and user preferences.
+The Claude Code Status Line displays essential development context including project name, git branch, recently modified files, and Claude model information. Fully customizable through JSON configuration with multiple built-in presets for different terminal environments and user preferences.
 
 ## Platform Support
 
@@ -16,11 +16,12 @@ The Claude Code Status Line displays essential development context including pro
   - Windows Terminal
   - Git Bash (with PowerShell available)
 
-### ⚡ **Works with PowerShell Core**
-- **Linux/macOS**: Compatible if PowerShell Core is installed
-  - Requires PowerShell Core 6.0+ installation
-  - Same functionality as Windows
-  - Most users won't have PowerShell installed by default
+### ⚡ **Linux/macOS Support Available**
+- **Linux/macOS**: Tested and compatible with PowerShell Core 6.0+
+  - Requires PowerShell Core installation (not included by default)
+  - Install with: `sudo snap install powershell --classic` (Ubuntu) or `brew install powershell` (macOS)
+  - Full functionality identical to Windows
+  - Uses `pwsh` command instead of `powershell.exe`
 
 ### 🚧 **Native Shell Script Coming Soon**
 - **Linux/macOS**: Native bash/zsh version in development
@@ -28,7 +29,7 @@ The Claude Code Status Line displays essential development context including pro
   - Uses same JSON configuration files
   - Optimized for native terminal environments
 
-**Note**: While this PowerShell version works on Linux/macOS with PowerShell Core, a native shell script (.sh) version is planned for users who prefer not to install PowerShell.
+**Note**: This PowerShell version has been tested and confirmed to work on Linux/macOS with PowerShell Core. A native shell script (.sh) version is still planned for users who prefer not to install PowerShell.
 
 ## Features
 
@@ -45,7 +46,7 @@ The Claude Code Status Line displays essential development context including pro
 ### 🎯 **Intelligent Project Context**
 - **Project Name Detection**: Automatically uses GitHub repository name or directory name
 - **Git Branch Integration**: Real-time branch information with fallback to 'main' or 'no-git'
-- **Smart File Tracking**: Shows recently accessed/modified files with intelligent path context
+- **Smart File Tracking**: Shows recently modified files with intelligent path context
 
 ### 🗂️ **Advanced Path Intelligence**
 - **Full Relative Paths**: Shows `.claude/settings.json` instead of just `settings.json`
@@ -92,6 +93,48 @@ Create or update `C:\Users\{YourUsername}\.claude\settings.json`:
 #### Step 3: Restart Claude Code
 Restart Claude Code to see your status line across all projects.
 
+### Linux/macOS Setup
+For Linux and macOS users with PowerShell Core installed:
+
+#### Step 1: Install PowerShell Core (if not already installed)
+```bash
+# Ubuntu/Debian
+sudo snap install powershell --classic
+
+# macOS with Homebrew
+brew install powershell
+
+# Other distributions - see: https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-linux
+```
+
+#### Step 2: Global File Placement
+Place files in your global Claude directory:
+```
+~/.claude/
+├── claude-code-statusline/
+│   ├── statusline.ps1
+│   ├── statusline-config.json
+│   └── presets/
+│       ├── minimal.json
+│       ├── clean.json
+│       └── compact.json
+└── settings.json
+```
+
+#### Step 3: Global Configuration
+Create or update `~/.claude/settings.json`:
+```json
+{
+  "statusLine": {
+    "type": "command",
+    "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File \"$HOME/.claude/claude-code-statusline/statusline.ps1\""
+  }
+}
+```
+
+#### Step 4: Restart Claude Code
+Restart Claude Code to see your cross-platform status line.
+
 ### Project-Specific Override (Optional)
 You can override the global status line for specific projects by creating a local `.claude/settings.json` in your project directory with different configuration.
 
@@ -101,25 +144,25 @@ You can override the global status line for specific projects by creating a loca
 
 ### Standard Projects
 ```
-MyProject -> Branch: main -> Accessed: src/components/Header.tsx
+MyProject -> Branch: main -> Modified: src/components/Header.tsx
 Claude Sonnet 4
 ```
 
 ### Deep Directory Structures
 ```
-LargeProject -> Branch: feature/new-ui -> Accessed: frontend/../components/Button.jsx
+LargeProject -> Branch: feature/new-ui -> Modified: frontend/../components/Button.jsx
 Claude Sonnet 4
 ```
 
 ### Beyond Search Depth
 ```
-ComplexProject -> Branch: dev -> Accessed: deep/nested/project/structure/modules/...
+ComplexProject -> Branch: dev -> Modified: deep/nested/project/structure/modules/...
 Claude Sonnet 4
 ```
 
 ### Git Repository Detection
 ```
-MultiCord -> Branch: dev -> Accessed: .claude/settings.json
+MultiCord -> Branch: dev -> Modified: .claude/settings.json
 Claude Sonnet 4
 ```
 
@@ -149,9 +192,9 @@ The status line uses JSON-based configuration for maximum flexibility and ease o
         "label": "Branch:",
         "position": 2
       },
-      "accessed": {
+      "modified": {
         "show": true,
-        "label": "Accessed:",
+        "label": "Modified:",
         "position": 3
       },
       "model": {
@@ -163,13 +206,13 @@ The status line uses JSON-based configuration for maximum flexibility and ease o
   "technical": {
     "maxDepth": 5,                 // Directory search depth
     "pathShortening": 3,           // When to shorten paths
-    "timeWindow": 30               // File access time window
+    "timeWindow": 30               // File time window
   },
   "colors": {
     "enabled": true,               // Enable color output
     "project": "Magenta",          // PowerShell color names
     "branch": "Yellow",
-    "accessed": "Green",
+    "modified": "Green",
     "model": "Cyan",
     "separator": "White"
   }
@@ -180,7 +223,7 @@ The status line uses JSON-based configuration for maximum flexibility and ease o
 
 #### Default Preset
 ```
-MultiCord -> Branch: dev -> Accessed: platform_core/entities/ProcessInfo.py
+MultiCord -> Branch: dev -> Modified: platform_core/entities/ProcessInfo.py
 Claude Sonnet 4
 ```
 
@@ -275,6 +318,7 @@ You can override any setting in your `statusline-config.json`:
   }
 }
 ```
+
 
 ## Customization
 
@@ -389,9 +433,13 @@ Claude Code uses this priority order:
 
 ## Requirements
 
-- **PowerShell**: Windows PowerShell 5.1+ or PowerShell Core (cross-platform)
-- **Git** (optional): For branch detection and repository name identification
+- **PowerShell**: Windows PowerShell 5.0+ or PowerShell Core 6.0+ (cross-platform tested)
+- **Git** (optional): For branch detection and repository name identification  
 - **Claude Code CLI**: The official Claude Code command-line interface
+
+### Platform-Specific Requirements:
+- **Windows**: Native PowerShell 5.0+ (included with Windows)
+- **Linux/macOS**: PowerShell Core 6.0+ installation required
 
 ## Community & Support
 

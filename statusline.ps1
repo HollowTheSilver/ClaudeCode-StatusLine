@@ -1,4 +1,4 @@
-#Requires -Version 5.1
+#Requires -Version 5.0
 
 <#
 .SYNOPSIS
@@ -127,7 +127,7 @@ function Get-DefaultConfiguration {
             components = [PSCustomObject]@{
                 project = [PSCustomObject]@{ show = $true; label = ''; position = 1 }
                 branch = [PSCustomObject]@{ show = $true; label = 'Branch:'; position = 2 }
-                accessed = [PSCustomObject]@{ show = $true; label = 'Accessed:'; position = 3 }
+                modified = [PSCustomObject]@{ show = $true; label = 'Modified:'; position = 3 }
                 model = [PSCustomObject]@{ show = $true; position = 'line2' }
             }
         }
@@ -377,7 +377,7 @@ function Get-RecentFileInfo {
         Number of path segments before applying shortening
         
     .OUTPUTS
-        Hashtable with AccessedFile and HasDeepFiles properties
+        Hashtable with ModifiedFile and HasDeepFiles properties
     #>
     [CmdletBinding()]
     [OutputType([hashtable])]
@@ -398,7 +398,7 @@ function Get-RecentFileInfo {
     Write-Verbose "Searching for recent files (depth: $MaxDepth, shortening: $PathShortening)"
     
     $result = @{
-        AccessedFile = $null
+        ModifiedFile = $null
         HasDeepFiles = $false
     }
     
@@ -408,8 +408,8 @@ function Get-RecentFileInfo {
         
         if ($files) {
             $mostRecentFile = $files | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-            $result.AccessedFile = Format-RelativePath -FilePath $mostRecentFile.FullName -BasePath $Path -MaxSegments $PathShortening
-            Write-Verbose "Most recent file: $($result.AccessedFile)"
+            $result.ModifiedFile = Format-RelativePath -FilePath $mostRecentFile.FullName -BasePath $Path -MaxSegments $PathShortening
+            Write-Verbose "Most recently modified file: $($result.ModifiedFile)"
         }
         
         # Check for files beyond our search depth
@@ -422,17 +422,17 @@ function Get-RecentFileInfo {
         $files = Get-ChildItem $Path -File -ErrorAction SilentlyContinue
         if ($files) {
             $mostRecentFile = $files | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-            $result.AccessedFile = $mostRecentFile.Name
+            $result.ModifiedFile = $mostRecentFile.Name
         }
     }
     catch {
         Write-Verbose "File search failed: $($_.Exception.Message)"
-        $result.AccessedFile = '.claude/settings.json'
+        $result.ModifiedFile = '.claude/settings.json'
     }
     
     # Provide default if no file found
-    if (-not $result.AccessedFile) {
-        $result.AccessedFile = if ($result.HasDeepFiles) { '.../' } else { '.claude/settings.json' }
+    if (-not $result.ModifiedFile) {
+        $result.ModifiedFile = if ($result.HasDeepFiles) { '.../' } else { '.claude/settings.json' }
     }
     
     return $result
@@ -549,7 +549,7 @@ function Build-StatusLine {
         $value = switch ($componentName) {
             'project' { $Data.ProjectName }
             'branch' { $Data.Branch }
-            'accessed' { $Data.AccessedFile }
+            'modified' { $Data.ModifiedFile }
             default { $null }
         }
         
@@ -641,7 +641,7 @@ try {
     $statusData = @{
         ProjectName = $projectName
         Branch = $branch
-        AccessedFile = $fileInfo.AccessedFile
+        ModifiedFile = $fileInfo.ModifiedFile
         ModelName = $modelName
     }
     
@@ -659,7 +659,7 @@ try {
 catch {
     Write-Verbose "Status line generation failed: $($_.Exception.Message)"
     # Fallback output
-    [Console]::WriteLine('MultiCord -> Branch: dev -> Accessed: .claude/settings.json')
+    [Console]::WriteLine('MultiCord -> Branch: dev -> Modified: .claude/settings.json')
     [Console]::WriteLine('Claude Sonnet 4')
     [Environment]::Exit(0)
 }

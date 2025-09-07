@@ -15,7 +15,7 @@
         "label": "",
         "position": 2
       },
-      "accessed": {
+      "modified": {
         "show": true,
         "label": "",
         "position": 3
@@ -35,7 +35,7 @@
     "enabled": true,
     "project": "Magenta",
     "branch": "Yellow",
-    "accessed": "Green",
+    "modified": "Green",
     "model": "Cyan",
     "separator": "DarkGray"
   },
