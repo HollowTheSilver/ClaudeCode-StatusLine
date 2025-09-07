@@ -1,3 +1,10 @@
+# Development and debugging files
+CLAUDE.md
+debug-*.ps1
+debug-*.txt
+test-*.ps1
+debug-*.json
+
 # Temporary files
 *.tmp
 *.log
@@ -21,3 +28,13 @@ my-*.json
 # Testing artifacts
 test-output/
 test-logs/
+
+# Claude Code development files
+.claude/
+*.debug
+temp-*
+scratch-*
+
+# PowerShell specific
+*.ps1xml
+$RECYCLE.BIN/
