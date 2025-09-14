@@ -27,7 +27,7 @@
     }
   },
   "technical": {
-    "maxDepth": 5,
+    "maxDepth": 7,
     "pathShortening": 3,
     "timeWindow": 30
   },
